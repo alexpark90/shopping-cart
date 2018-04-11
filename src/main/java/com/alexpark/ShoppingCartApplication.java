@@ -39,6 +39,9 @@ public class ShoppingCartApplication implements CommandLineRunner {
 
         repository.save(product1);
         repository.save(product2);
-
     }
+//
+//    public JSONArray loadMockDataFromJsonFile(String filename) {
+//        return null;
+//    }
 }

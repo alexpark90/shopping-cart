@@ -3,6 +3,7 @@ package com.alexpark.product.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 
 /**
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
  */
 
 @Document
+@Valid
 public class Product {
 
     @Id
