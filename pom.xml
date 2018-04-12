@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>shopping-cart-demo</name>
-	<name>Demo project for Spring Boot and Mongo DB</name>
+	<description>Demo project for Spring Boot and Mongo DB</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

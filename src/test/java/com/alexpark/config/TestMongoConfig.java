@@ -1,32 +1,28 @@
-package com.alexpark.configuration;
+package com.alexpark.config;
 
 import com.mongodb.MongoClient;
 import cz.jirutka.spring.embedmongo.EmbeddedMongoFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.io.IOException;
 
-/**
- * @author Alex Park
- */
 @Configuration
-public class MongoConfig {
+@Profile("test_embedded")
+public class TestMongoConfig {
 
-    @Value("${spring.spring.data.mongodb.host}")
-    private static final String MONGO_DB_URL = "localhost";
-
-    @Value("${spring.spring.data.mongodb.database}")
-    private static final String MONGO_DB_NAME = "embedded_db";
+    private String mongoHost = "localhost";
+    private String mongoDb = "test_embedded_db";
 
     @Bean
     public MongoTemplate mongoTemplate() throws IOException {
         EmbeddedMongoFactoryBean mongo = new EmbeddedMongoFactoryBean();
-        mongo.setBindIp(MONGO_DB_URL);
+        mongo.setBindIp(mongoHost);
         MongoClient mongoClient = mongo.getObject();
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoClient, MONGO_DB_NAME);
+        MongoTemplate mongoTemplate = new MongoTemplate(mongoClient, mongoDb);
         return mongoTemplate;
     }
 }

@@ -7,8 +7,7 @@ import java.util.List;
 /**
  * @author Alex Park
  */
-
-public interface ProductService {
+public interface IProductService {
 
     List<Product> listAll();
 
@@ -16,6 +15,7 @@ public interface ProductService {
 
     Product saveOrUpdate(Product product);
 
-    void delete(String id);
+    List<Product> saveAll(List<Product> products);
 
+    void delete(String id);
 }

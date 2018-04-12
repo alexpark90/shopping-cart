@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 
 import java.math.BigDecimal;
 
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
  * @author Alex Park
  */
 @SpringBootApplication
+@Profile("!test_embedded")
 public class ShoppingCartApplication implements CommandLineRunner {
 
     @Autowired
@@ -40,8 +42,4 @@ public class ShoppingCartApplication implements CommandLineRunner {
         repository.save(product1);
         repository.save(product2);
     }
-//
-//    public JSONArray loadMockDataFromJsonFile(String filename) {
-//        return null;
-//    }
 }
