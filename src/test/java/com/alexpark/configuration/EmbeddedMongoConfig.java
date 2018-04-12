@@ -1,4 +1,4 @@
-package com.alexpark.config;
+package com.alexpark.configuration;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
@@ -17,8 +17,6 @@ import java.io.IOException;
 @Profile("integration-test")
 @Configuration
 public class EmbeddedMongoConfig {
-
-    private String database;
 
     @Bean(destroyMethod = "close")
     public Mongo mongo(MongodProcess mongodProcess) throws IOException {

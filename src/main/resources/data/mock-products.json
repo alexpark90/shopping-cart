@@ -1,0 +1,62 @@
+[
+  {
+    "id": "id0",
+    "name": "Chrome",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "9.33"
+  },
+  {
+    "id": "id1",
+    "name": "React",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "10.1"
+  },
+  {
+    "id": "id2",
+    "name": "Angular",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "23.2"
+  },
+  {
+    "id": "id3",
+    "name": "Java",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "9.33"
+  },
+  {
+    "id": "id4",
+    "name": "TypeScript",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "66.1"
+  },
+  {
+    "id": "id5",
+    "name": "Geek",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "3"
+  },
+  {
+    "id": "id6",
+    "name": "JavaScript",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "23.5"
+  },
+  {
+    "id": "id7",
+    "name": "Git",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "3.99"
+  },
+  {
+    "id": "id8",
+    "name": "Python",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "1.33"
+  },
+  {
+    "id": "id9",
+    "name": "Programming",
+    "imageUrl": "http://placehold.it/50x50",
+    "price": "1.33"
+  }
+]

@@ -29,14 +29,4 @@ public class OrderServiceImpl implements IOrderService {
         Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException());
         return order;
     }
-
-    @Override
-    public Order saveOrUpdate(Order product) {
-        return orderRepository.save(product);
-    }
-
-    @Override
-    public void delete(String id) {
-        orderRepository.deleteById(id);
-    }
 }

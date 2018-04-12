@@ -31,7 +31,6 @@ public class OrderControllerTest {
     OrderController fixture;
 
     private MockMvc mockMvc;
-    private List<Product> mockOrders = new ArrayList<>();
 
     @Before
     public void before() {

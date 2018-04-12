@@ -22,6 +22,11 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceImplTest {
 
+    private static final String ID = "id";
+    private static final String NAME = "name";
+    private static final String IMAGE_URL = "url";
+    private static final BigDecimal PRICE = new BigDecimal(100);
+
     @Mock
     ProductRepository mockRepository;
 
@@ -31,39 +36,24 @@ public class ProductServiceImplTest {
     @Test
     public void testListAll() {
 
-        Product product1 = new Product();
-        product1.setId("id1");
-        product1.setName("name1");
-        product1.setPrice(BigDecimal.valueOf(123));
-        product1.setImageUrl("url1");
-
-        List<Product> products = ImmutableList.of(product1);
-
+        List<Product> products = ImmutableList.of(createProduct());
         when(mockRepository.findAll()).thenReturn(products);
 
         List<Product> result = fixture.listAll();
 
         assertEquals(products, result);
-
         verify(mockRepository).findAll();
-
     }
 
     @Test
     public void testGetById() {
 
-        Product product1 = new Product();
-        product1.setId("id1");
-        product1.setName("name1");
-        product1.setPrice(BigDecimal.valueOf(123));
-        product1.setImageUrl("url1");
+        Product product = createProduct();
+        when(mockRepository.findById(isA(String.class))).thenReturn(Optional.ofNullable(product));
 
-        when(mockRepository.findById(isA(String.class))).thenReturn(Optional.ofNullable(product1));
+        Product result = fixture.getById(ID);
 
-        Product result = fixture.getById("id1");
-
-        assertEquals(product1, result);
-
+        assertEquals(product, result);
         verify(mockRepository).findById(isA(String.class));
     }
 
@@ -72,26 +62,30 @@ public class ProductServiceImplTest {
 
         when(mockRepository.findById(isA(String.class))).thenReturn(Optional.ofNullable(null));
 
-        fixture.getById("id1");
+        fixture.getById(ID);
     }
 
     @Test
     public void testSaveAll() {
 
-        Product productToSave = new Product();
-        productToSave.setId("id1");
-        productToSave.setName("name1");
-        productToSave.setPrice(BigDecimal.valueOf(123));
-        productToSave.setImageUrl("url1");
+        Product productToSave = createProduct();
 
         List<Product> products = ImmutableList.of(productToSave);
-
         when(mockRepository.saveAll(isA(List.class))).thenReturn(products);
 
         List<Product> result = fixture.saveAll(products);
 
         assertEquals(products, result);
-
         verify(mockRepository).saveAll(isA(List.class));
+    }
+
+    private Product createProduct() {
+        Product product = new Product();
+        product.setId(ID);
+        product.setName(NAME);
+        product.setPrice(PRICE);
+        product.setImageUrl(IMAGE_URL);
+
+        return product;
     }
 }

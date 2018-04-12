@@ -62,7 +62,8 @@ public class ProductControllerTest {
         when(mockProductService.listAll()).thenReturn(mockProducts);
 
         mockMvc.perform(get(API))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
         verify(mockProductService).listAll();
     }

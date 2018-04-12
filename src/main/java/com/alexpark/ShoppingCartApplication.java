@@ -2,13 +2,18 @@ package com.alexpark;
 
 import com.alexpark.product.model.Product;
 import com.alexpark.product.repository.ProductRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Profile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Alex Park
@@ -26,20 +31,20 @@ public class ShoppingCartApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
         repository.deleteAll();
+        loadData();
+    }
 
-        Product product1 = new Product();
-        product1.setName("test1");
-        product1.setPrice(BigDecimal.valueOf(1000));
-        product1.setImageUrl("http://test1.jpg");
-
-        Product product2 = new Product();
-        product2.setName("test2");
-        product2.setPrice(BigDecimal.valueOf(5000));
-        product2.setImageUrl("http://test2.jpg");
-
-        repository.save(product1);
-        repository.save(product2);
+    public void loadData() {
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<Product>> mapType = new TypeReference<List<Product>>() {};
+        InputStream is = TypeReference.class.getResourceAsStream("/data/mock-products.json");
+        try {
+            List<Product> productList = mapper.readValue(is, mapType);
+            repository.saveAll(productList);
+            System.out.println("Products list saved successfully");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

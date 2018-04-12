@@ -27,11 +27,11 @@ public class ProductRepositoryTest extends BaseIntegrationTest {
 
         List<Product> result = fixture.findAll();
 
-        assertEquals("should returned 2 products", result.size(), 2);
-        assertEquals("should returned the id field", result.get(0).getId(), "id1");
-        assertEquals("should returned the name field", result.get(0).getName(), "test1");
-        assertEquals("should returned the price field", result.get(0).getPrice(), BigDecimal.valueOf(1000));
-        assertEquals("should returned the imageUrl field", result.get(0).getImageUrl(), "http://test1.jpg");
+        assertEquals("should returned 2 products", 2, result.size());
+        assertEquals("should returned the id field", "id1", result.get(0).getId());
+        assertEquals("should returned the name field", "test1", result.get(0).getName());
+        assertEquals("should returned the price field", BigDecimal.valueOf(1000), result.get(0).getPrice());
+        assertEquals("should returned the imageUrl field", "http://test1.jpg", result.get(0).getImageUrl());
     }
 
     private void setUpProductData() {

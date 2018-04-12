@@ -45,10 +45,10 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/{productId}")
+    @PutMapping(value = "/{productId}")
     @ApiOperation(value = "Update A Product By {productId}")
     public ResponseEntity<String> updateProduct(@RequestBody @Valid Product product, @PathVariable("productId") String productId) {
-        productService.saveOrUpdate(product);
+        productService.update(productId, product);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

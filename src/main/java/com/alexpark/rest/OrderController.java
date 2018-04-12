@@ -35,10 +35,4 @@ public class OrderController {
     public Order getOrder(@PathVariable String orderId) {
         return orderService.getById(orderId);
     }
-
-    @PostMapping(value = "/{orderId}")
-    @ApiOperation(value = "Update A Order By {orderId}")
-    public void updateOrder(@RequestBody @Valid Order order, @PathVariable("orderId") String orderId) {
-        orderService.saveOrUpdate(order);
-    }
 }

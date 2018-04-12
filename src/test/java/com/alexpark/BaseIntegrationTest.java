@@ -1,7 +1,7 @@
 package com.alexpark;
 
-import com.alexpark.config.EmbeddedMongoConfig;
-import com.alexpark.config.TestMongoConfig;
+import com.alexpark.configuration.EmbeddedMongoConfig;
+import com.alexpark.configuration.TestMongoConfig;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;

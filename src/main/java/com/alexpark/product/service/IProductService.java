@@ -13,7 +13,7 @@ public interface IProductService {
 
     Product getById(String id);
 
-    Product saveOrUpdate(Product product);
+    Product update(String id, Product product);
 
     List<Product> saveAll(List<Product> products);
 

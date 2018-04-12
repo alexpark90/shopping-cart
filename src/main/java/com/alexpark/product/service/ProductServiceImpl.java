@@ -30,7 +30,8 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Product saveOrUpdate(Product product) {
+    public Product update(String id, Product product) {
+        productRepository.findById(id).orElseThrow(() -> new RuntimeException());
         return productRepository.save(product);
     }
 

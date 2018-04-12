@@ -14,9 +14,4 @@ public interface IOrderService {
     List<Order> listAll();
 
     Order getById(String id);
-
-    Order saveOrUpdate(Order order);
-
-    void delete(String id);
-
 }
