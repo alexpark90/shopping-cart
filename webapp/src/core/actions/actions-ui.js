@@ -1,20 +1,20 @@
-import constants from 'core/types';
+import constants from 'core/action-types';
 
 /**
  * openLeftNav - Open the left side nav
  */
-export function openLeftNav() {
+export function showConfirmBox() {
   return {
-    type: constants.OPEN_LEFT_NAV
+    type: constants.SHOW_CONFIRM_BOX
   };
 }
 
 /**
  * closeLeftNav - Close the left side nav
  */
-export function closeLeftNav() {
+export function closeConfirmBox() {
   return {
-    type: constants.CLOSE_LEFT_NAV
+    type: constants.CLOSE_CONFIRM_BOX
   };
 }
 
@@ -30,10 +30,9 @@ export function clear() {
 /**
  * showModal - Open the modal
  */
-export function showCart(obj) {
+export function showCart() {
   return {
     type        : constants.SHOW_CART,
-    payload     : obj
   };
 }
 

@@ -3,8 +3,9 @@
   z-index: 10000 !important;
 
   & > div:nth-child(1) {
-    max-width: 80%;
+    max-width: 60%;
     margin: 0 auto;
+    overflow-scrolling: auto;
   }
 
   div:nth-child(3) {

@@ -1,4 +1,4 @@
-import constants from 'core/types';
+import constants from 'core/action-types';
 
 const initialState = {
 	productList : []

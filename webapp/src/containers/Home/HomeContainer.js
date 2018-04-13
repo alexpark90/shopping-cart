@@ -2,17 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'
-import { VacHistoryContainer, VaccineFormContainer } from 'containers'
+import ProductList from '../../components/ProductList/ProductList';
+
 /* component styles */
 import { styles } from './styles.scss'
 
 /* actions */
-import * as uiActionCreators from 'core/actions/actions-ui';
-import * as productsActionCreators from 'core/actions/actions-products';
 import * as cartActionCreators from 'core/actions/actions-cart';
-import ProductList from '../../components/ProductList/ProductList';
 
-class HomeViewContainer extends Component {
+class HomeContainer extends Component {
   constructor (props) {
     super(props);
   }
@@ -24,7 +22,7 @@ class HomeViewContainer extends Component {
   render () {
     return (
       <div>
-        <ProductList props = {this.props.products} addToCart = {this.addToCart} />
+        <ProductList props = { this.props } addToCart = {this.addToCart} />
       </div>
     )
   }
@@ -40,13 +38,11 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     actions: {
-      ui: bindActionCreators(uiActionCreators, dispatch),
-      products: bindActionCreators(productsActionCreators, dispatch),
       cart: bindActionCreators(cartActionCreators, dispatch)
     }
   }
 }
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(HomeViewContainer)
+  connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
 )

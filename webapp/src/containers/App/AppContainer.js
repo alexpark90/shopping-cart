@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import muiTheme from './styles/theme/mui-theme'
 import { HashRouter,
@@ -18,15 +17,13 @@ import './styles/app.scss'
 import * as uiActionCreators from 'core/actions/actions-ui'
 
 /* application containers & components */
-import { HeaderContainer, LeftNavBarContainer, HomeViewContainer } from '../index'
-import ModalContainer from '../Modal/ModalContainer';
-import CheckoutContainer from '../Checkout/CheckoutContainer';
-
-injectTapEventPlugin();
+import { HeaderContainer, HomeContainer, CheckoutContainer } from '../index'
+import ModalContainer from '../Cart/CartContainer';
 
 const styles = {
   background: {
-    backgroundImage: 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)',
+	  backgroundImage: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
+	  paddingBottom: 100
   }
 };
 
@@ -36,7 +33,7 @@ class AppContainer extends Component {
   }
 
   render () {
-    const { ui, actions } = this.props;
+    const { ui } = this.props;
 
     return (
       <MuiThemeProvider muiTheme={muiTheme} >
@@ -46,18 +43,14 @@ class AppContainer extends Component {
                   <HeaderContainer />
                   <div className="container">
                       <Switch>
-                          <Route path="/home" component={HomeViewContainer} />
+                          <Route path="/home" component={HomeContainer} />
 	                        <Route path="/checkout" component={CheckoutContainer} />
                           <Redirect from="/" to="/home" />
                       </Switch>
                   </div>
-                  <LeftNavBarContainer />
+		              <ModalContainer open={ui.showCart} />
               </div>
           </HashRouter>
-          <ModalContainer
-              open={ui.showCart}
-              actions={ui.modalActions}
-              uiActions={actions.ui} />
         </div>
       </MuiThemeProvider>
     )

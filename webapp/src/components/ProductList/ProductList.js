@@ -1,4 +1,4 @@
-import React, { Component }   from 'react';
+import React from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import { FlatButton } from 'material-ui';
 
@@ -12,6 +12,12 @@ const styles = {
 };
 
 const ProductList = ({props, addToCart}) => {
+	const { products, history } = props;
+
+	const handleTileClick = (item) => {
+		addToCart(item);
+		history.push("/checkout");
+	};
 
 	const mapToTile = (productList) => {
 		return (productList.map((item) =>
@@ -19,9 +25,10 @@ const ProductList = ({props, addToCart}) => {
 				key={item.id}
 				title={item.name}
 				subtitle={<strong>Price: <b>{item.price}</b> CAD</strong>}
-				actionIcon={<FlatButton label="Add to Cart" onClick={() => addToCart(item)}/>}
+				actionIcon={<FlatButton label="Add to Cart" onClick={() => addToCart(item)} rippleColor={'red'} />
+				}
 			>
-				<img src={item.imageUrl}/>
+				<img src={"src/assets/images/" + item.imageUrl} onClick={() => handleTileClick(item)}/>
 			</GridTile>
 		))
 	};
@@ -33,7 +40,7 @@ const ProductList = ({props, addToCart}) => {
           cols={3}
           padding={30}
       >
-	      {mapToTile(props.productList)}
+	      {mapToTile(products.productList)}
       </GridList>
     </div>
 	)

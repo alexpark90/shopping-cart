@@ -27,6 +27,9 @@ class HeaderContainer extends Component {
   };
 
   render() {
+	  const { cart } = this.props;
+	  const numOfItemsInCart = cart.itemsInCart.length;
+
     return (
       <div className={styles}>
         <header>
@@ -35,10 +38,12 @@ class HeaderContainer extends Component {
             onLeftIconButtonClick={this.handleToggle}
             iconElementRight={
               <Badge
-                  badgeContent={this.props.cart.itemsInCart.length}
+                  badgeContent={numOfItemsInCart}
                   primary={true}
               >
-	              <IconButton tooltip="Open Shopping Cart" onClick={this.shoppingCartClick} >
+	              <IconButton tooltip="Open Shopping Cart"
+	                          onClick={this.shoppingCartClick}
+	                          disabled={numOfItemsInCart == 0}>
                   <ShoppingCartIcon />
                 </IconButton>
               </Badge>}
@@ -51,7 +56,6 @@ class HeaderContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    ui: state.ui,
     cart: state.cart
   };
 }

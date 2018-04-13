@@ -9,15 +9,12 @@ import * as cartActionCreators from 'core/actions/actions-cart';
 
 /* component styles */
 import { styles } from './styles.scss';
+import Link from 'react-router-dom/es/Link';
 
-class ModalContainer extends Component {
+class CartContainer extends Component {
   constructor(props) {
     super(props);
   }
-
-  goToCheckout=() => {
-
-  };
 
   handleClose=() => {
     this.props.actions.ui.closeCart();
@@ -36,23 +33,25 @@ class ModalContainer extends Component {
 			<List>
 				{cartItems.map((item) =>
 				<ListItem
-					onClick={() => console.log('just got clicked')} disabled
+					disabled
 					key={item.id}
-					primaryText={item.name}
-					secondaryText={<span><b>{item.price}</b> CAD</span>}
-					rightAvatar={<Avatar src={item.imageUrl} />}
-					leftIcon={<IconButton tooltip="Remove Item" onClick={() => this.removeItem(item)}><RemoveCircleIcon /></IconButton>}
+					primaryText={<span>{item.name}
+													<TextField
+														id={'qty'}
+														label='Quantity'
+														value={item.qty}
+														style={{width: 40, display: 'inline-block', margin: 30}}
+														onChange={this.handleChange()}
+														type='number'
+													/>
+												</span>}
+					secondaryText={<span>&#36;<b>{item.price}</b> CAD</span>}
+					leftAvatar={<Avatar src={"src/assets/images/" + item.imageUrl} />}
+					rightIcon={<IconButton tooltip="Remove Item"
+					                       onClick={() => this.removeItem(item)}>
+												<RemoveCircleIcon />
+											</IconButton>}
 				>
-					<TextField
-						label='Quantity'
-						value={item.price}
-						style={{width: 50}}
-						onChange={this.handleChange()}
-						type='number'
-						InputLabelProps={{
-							shrink: true,
-						}}
-					/>
 				</ListItem>
 				)}
 			</List>
@@ -60,14 +59,17 @@ class ModalContainer extends Component {
 	};
 
   render() {
-    const { ui, cart, actions } = this.props;
+    const { ui, cart } = this.props;
 
 	  const buttons = [
-		  <FlatButton
-			  label="Checkout"
-			  primary={true}
-			  onClick={this.goToCheckout}
-		  />,
+		  <Link to='/checkout'>
+			  <FlatButton
+				  primary={true}
+				  label='Buy Now'
+				  onClick={this.handleClose}
+				  disabled={cart.itemsInCart.length == 0}
+			  />
+		  </Link>,
 		  <FlatButton
 			  label="Save and Keep Shopping"
 			  primary={true}
@@ -83,14 +85,15 @@ class ModalContainer extends Component {
           actions={buttons}
           className={styles}
           open={ui.showCart}
-          onRequestClose={this.handleClose}>
+          onRequestClose={this.handleClose}
+          autoScrollBodyContent={true}>
 	        {this.mapCartItems(cart.itemsInCart)}
         </Dialog>
       </div>
     );
   }
-
 }
+
 function mapStateToProps (state) {
 	return {
 		ui: state.ui,
@@ -108,4 +111,4 @@ function mapDispatchToProps (dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

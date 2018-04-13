@@ -1,8 +1,7 @@
-import constants from 'core/types';
+import constants from 'core/action-types';
 
-const API_URL = "http://localhost:8080/api/";
-const PRODUCTS_API_URL = API_URL + "products";
-const ORDER_API_URL = API_URL + "order";
+const API_URL = "http://localhost:8080/api";
+const PRODUCTS_API_URL = `${API_URL}/products`;
 
 export function loadProducts() {
 	return dispatch => {
