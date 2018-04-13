@@ -1,21 +1,23 @@
 import constants from 'core/types';
 
 const initialState = {
-  loggedInUser: null
+  itemsInCart: []
 };
 
-export function userReducer (state = initialState, action) {
+export function cartReducer (state = initialState, action) {
 
   switch (action.type) {
 
-  case constants.USER_LOGGED_IN :
-    return Object.assign({}, state, {
-      loggedInUser: action.payload
-    });
+  case constants.ADD_TO_CART :
+  return Object.assign({}, state, {
+    itemsInCart: [ ...state.itemsInCart, action.payload]
+  });
 
-  case constants.USER_LOGGED_OUT :
-    return initialState;
-
+  case constants.REMOVE_FROM_CART :
+	  return Object.assign({}, state, {
+		  itemsInCart: state.itemsInCart.filter(i => i.id !== action.payload.id)
+	  });
+	  
   default:
     return state;
   }
