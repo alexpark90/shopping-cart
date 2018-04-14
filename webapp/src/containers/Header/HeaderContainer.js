@@ -18,10 +18,6 @@ class HeaderContainer extends Component {
     super(props);
   }
 
-  handleToggle =() => {
-    this.props.actions.ui.openLeftNav();
-  };
-
   shoppingCartClick = () => {
   	this.props.actions.ui.showCart();
   };
@@ -35,7 +31,6 @@ class HeaderContainer extends Component {
         <header>
           <AppBar
             title={appConfig.appName}
-            onLeftIconButtonClick={this.handleToggle}
             iconElementRight={
               <Badge
                   badgeContent={numOfItemsInCart}

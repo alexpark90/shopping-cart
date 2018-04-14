@@ -29,4 +29,9 @@ public class OrderServiceImpl implements IOrderService {
         Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException());
         return order;
     }
+
+    @Override
+    public Order save(Order order) {
+        return orderRepository.save(order);
+    }
 }

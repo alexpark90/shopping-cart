@@ -14,4 +14,6 @@ public interface IOrderService {
     List<Order> listAll();
 
     Order getById(String id);
+
+    Order save(Order order);
 }

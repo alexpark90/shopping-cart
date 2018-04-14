@@ -42,9 +42,13 @@ class CheckoutContainer extends Component {
 		this.props.actions.ui.closeConfirmBox();
 	};
 
-	handleValueChange = (event) => {
-		const value = event.target.value;
-		this.setState(Object.assign({}, ...this.state, { order : { customerName : value} }));
+	handleValueChange = () => event => {
+
+		const { name, value} = event.target;
+		let order = { ...this.state };
+		order[name] = value;
+
+		this.setState(Object.assign({}, ...this.state.order, { order : order }));
 	};
 
 	mapCartItems = (cartItems) => {
@@ -90,13 +94,13 @@ class CheckoutContainer extends Component {
 					<TextField hintText="Enter Your Name Here"
 					           name="customerName"
 					           className='text-field'
-					           onChange={() => this.handleValueChange()}
+					           onChange={this.handleValueChange()}
 					           underlineShow={false} />
 					<Divider />
 					<TextField hintText="Enter Your Email Here"
 					           name="email"
 					           className='text-field'
-					           onChange={() => this.handleValueChange()}
+					           onChange={this.handleValueChange()}
 					           underlineShow={false}  />
 					<Divider />
 					<br />
@@ -118,7 +122,7 @@ class CheckoutContainer extends Component {
 					actions={buttons}
 					open={ui.showConfirm}
 					onRequestClose={this.handleClose}>
-					<p>{JSON.stringify(this.state.order)}</p>
+					<p>{`JSON.stringify(this.state.order)`}</p>
 				</Dialog>
 			</div>
 		);

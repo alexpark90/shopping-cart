@@ -20,7 +20,6 @@ public class Order {
     private String _id;
     private String customerName;
     private String email;
-    private String address;
     private Date orderDate;
     private String status;
     private BigDecimal totalPrice;
@@ -44,14 +43,6 @@ public class Order {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public Date getOrderDate() {
@@ -96,7 +87,6 @@ public class Order {
                 "_id='" + _id + '\'' +
                 ", customerName='" + customerName + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
                 ", orderDate=" + orderDate +
                 ", status='" + status + '\'' +
                 ", totalPrice=" + totalPrice +
